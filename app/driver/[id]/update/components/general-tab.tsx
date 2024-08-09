@@ -44,11 +44,11 @@ const formSchema = z.object({
   // .email({
   //   message: "Invalid email address.",
   // }),
-  password: z.string(),
+  password: z.string().optional(),
   // .min(8, {
   //   message: "Password must be at least 8 characters.",
   // }),
-  confirmPassword: z.string(),
+  // confirmPassword: z.string(),
   // .min(8, {
   //   message: "Confirm password must be at least 8 characters.",
   // }),
@@ -85,7 +85,7 @@ const GeneralTab: React.FC<IGeneralTabProps> = ({ onCreate, data }) => {
       uniqueId: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      // confirmPassword: "",
       // photo: "",
       // status: "Approved",
       language: "English",
@@ -101,20 +101,19 @@ const GeneralTab: React.FC<IGeneralTabProps> = ({ onCreate, data }) => {
   }, [data]);
 
   function onSubmit(values: FormType) {
+    console.log(values)
     const requestData: IDriverData = {
       generalData: {
         displayName: values.displayName,
         // photo:values.photo,
         uniqueId: values.uniqueId,
         email: values.email,
-        password: values.password,
+        password: values.password ?? '',
         language: values.language,
         timezone: values.timezone,
         fleetOperator: values.fleetOperator,
       },
       isDeleted: false,
-      personalData: data?.personalData,
-      otherData: data?.otherData,
     };
 
     if (data?.id) {
@@ -127,6 +126,7 @@ const GeneralTab: React.FC<IGeneralTabProps> = ({ onCreate, data }) => {
             title: 'Updated successfully',
             text: 'The driver data has been updated.',
           });
+          form.reset(values);
         },
         (error) => {
           Swal.fire({

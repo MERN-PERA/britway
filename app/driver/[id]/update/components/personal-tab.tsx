@@ -119,9 +119,11 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
 
   function onSubmit(values: FormType) {
     if (data?.generalData) {
+      const { driverDataId, ...restGeneralData } = data?.generalData as any;
+
       const requestData: IDriverData = {
         generalData: {
-          ...data?.generalData,
+          ...restGeneralData,
         },
         personalData: values,
         otherData: data?.otherData,
@@ -130,6 +132,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
         (response) => {
           onCreate(response.data);
           toast("Updated successfully");
+          form.reset(values);
         },
         (error) => {
           toast("Update failed");
