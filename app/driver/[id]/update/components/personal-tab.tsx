@@ -25,69 +25,21 @@ import ProfilePhoto from "@/app/components/profile-photo";
 
 const formSchema = z.object({
   title: z.string().nullish(),
-  // .min(2, {
-  //   message: "Title must be at least 2 characters.",
-  // }),
   firstName: z.string().nullish(),
-  // .min(2, {
-  //   message: "First name must be at least 2 characters.",
-  // }),
   lastName: z.string().nullish(),
-  // .min(2, {
-  //   message: "Last name must be at least 2 characters.",
-  // }),
   dateOfBirth: z.string().nullish(),
-  // .regex(/^\d{4}-\d{2}-\d{2}$/, {
-  //   message: "Date of birth must be in the format YYYY-MM-DD.",
-  // }),
   mobileNumber: z.string().nullish(),
-  // .regex(/^\d{10,15}$/, {
-  //   message: "Mobile number must be between 10 and 15 digits.",
-  // }),
   telephoneNumber: z.string().nullish(),
-  // .regex(/^\d{10,15}$/, {
-  //   message: "Telephone number must be between 10 and 15 digits.",
-  // }),
   emergencyNumber: z.string().nullish(),
-  // .regex(/^\d{10,15}$/, {
-  //   message: "Emergency number must be between 10 and 15 digits.",
-  // }),
   address: z.string().nullish(),
-  // .min(5, {
-  //   message: "Address must be at least 5 characters.",
-  // }),
   city: z.string().nullish(),
-  // .min(2, {
-  //   message: "City must be at least 2 characters.",
-  // }),
   postCode: z.string().nullish(),
-  // .regex(/^\d{2,10}$/, {
-  //   message: "Company number must be between 2 and 10 digits.",
-  // }),
   county: z.string().nullish(),
-  // .min(2, {
-  //   message: "County must be at least 2 characters.",
-  // }),
   country: z.string().nullish(),
-  // .min(2, {
-  //   message: "Country must be at least 2 characters.",
-  // }),
   companyName: z.string().nullish(),
-  // .min(2, {
-  //   message: "Company name must be at least 2 characters.",
-  // }),
   companyNumber: z.string().nullish(),
-  // .regex(/^\d{2,10}$/, {
-  //   message: "Company number must be between 2 and 10 digits.",
-  // }),
   companyVatNumber: z.string().nullish(),
-  // .regex(/^\d{2,15}$/, {
-  //   message: "Company VAT number must be between 2 and 15 digits.",
-  // }),
   note: z.string().nullish(),
-  // .min(2, {
-  //   message: "Note must be at least 2 characters.",
-  // }),
   photo: z.string().nullish().optional().nullable(),
 });
 
@@ -181,18 +133,6 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                   uploadedFiles={field.value ? [field.value] : undefined}
                   onUploadComplete={(files) => field.onChange(files[0])}
                 />
-                {/* <ProfilePhoto
-                  // currentImageUrl={user.profileImage}
-                  onUploadComplete={(urls) => {
-                    // Handle the newly uploaded image URL (usually the first one)
-                    const newImageUrl = urls[0];
-                    // Update your user profile with the new image URL
-                  }}
-                  onRemoveFile={(file) => {
-                    // Handle removing the profile photo
-                    // Reset the user's profile image to null/default
-                  }}
-                /> */}
                 <FormDescription>
                   Upload a profile photo (max 4MB)
                 </FormDescription>
@@ -208,7 +148,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Title" {...field} />
+                    <Input placeholder="Title" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -221,7 +161,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="First Name" {...field} />
+                    <Input placeholder="First Name" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -234,7 +174,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Last Name" {...field} />
+                    <Input placeholder="Last Name" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -250,7 +190,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>Date Of Birth</FormLabel>
                   <FormControl>
-                    <Input type="date" {...field} />
+                    <Input type="date" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -264,7 +204,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>Mobile Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="Mobile Number" {...field} />
+                    <Input placeholder="Mobile Number" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -284,6 +224,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                       type="number"
                       placeholder="Telephone Number"
                       {...field}
+                      value={field.value ?? ""}
                     />
                   </FormControl>
                   <FormMessage />
@@ -302,6 +243,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                       type="number"
                       placeholder="Emergency Number"
                       {...field}
+                      value={field.value ?? ""}
                     />
                   </FormControl>
                   <FormMessage />
@@ -316,7 +258,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
               <FormItem>
                 <FormLabel>Address</FormLabel>
                 <FormControl>
-                  <Input placeholder="Address" {...field} />
+                  <Input placeholder="Address" {...field} value={field.value ?? ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -331,7 +273,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>City</FormLabel>
                   <FormControl>
-                    <Input placeholder="City" {...field} />
+                    <Input placeholder="City" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -345,7 +287,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>PostCode</FormLabel>
                   <FormControl>
-                    <Input placeholder="PostCode" {...field} />
+                    <Input placeholder="PostCode" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -361,7 +303,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>County</FormLabel>
                   <FormControl>
-                    <Input placeholder="County" {...field} />
+                    <Input placeholder="County" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -375,7 +317,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>Country</FormLabel>
                   <FormControl>
-                    <Input placeholder="Country" {...field} />
+                    <Input placeholder="Country" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -386,12 +328,11 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
           <FormField
             name="companyName"
             control={form.control}
-            // rules={{ required: "Photo is required" }}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Company Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Company Name" {...field} />
+                  <Input placeholder="Company Name" {...field} value={field.value ?? ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -406,7 +347,7 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
                 <FormItem>
                   <FormLabel>Company Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="Company Number" {...field} />
+                    <Input placeholder="Company Number" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -416,12 +357,11 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
             <FormField
               name="companyVatNumber"
               control={form.control}
-              // rules={{ required: "Password is required" }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Company VAT Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="Company VAT Number" {...field} />
+                    <Input placeholder="Company VAT Number" {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -432,12 +372,11 @@ const GeneralTab: FC<PersonalTabProps> = ({ onCreate, data }) => {
           <FormField
             name="note"
             control={form.control}
-            // rules={{ required: "Password is required" }}
             render={({ field }) => (
               <FormDescription>
                 <FormLabel>Note</FormLabel>
                 <FormControl>
-                  <Input type="Description" placeholder="Note" {...field} />
+                  <Input type="Description" placeholder="Note" {...field} value={field.value ?? ""} />
                 </FormControl>
                 <FormMessage />
               </FormDescription>
