@@ -295,7 +295,14 @@ export function BookingTable({ data = [] }: { data: Booking[] }) {
 
       {/* Table container with contained horizontal and vertical scrolling */}
       <div ref={tableContainerRef} className="relative border rounded-md w-full">
-        <div className="overflow-auto" style={{ maxHeight: 'calc(7 * 3.5rem)' }}> {/* 8 rows with a row height of 3.5rem */}
+        <div 
+          className="overflow-auto"
+          style={{
+            maxHeight: 'calc(100vh - 310px)',
+            minHeight: '50vh', // Ensures a minimum height for usability
+          }}
+        >
+
           <Table>
             <TableHeader className="sticky top-0 z-20">
               {table.getHeaderGroups().map((headerGroup) => (

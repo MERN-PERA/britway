@@ -304,7 +304,13 @@ export function DriversTable() {
             <Spinner size="lg" />
           </div>
         ) : (
-          <div className="overflow-auto" style={{ maxHeight: 'calc(7 * 3.5rem)' }}>
+          <div 
+            className="overflow-auto"
+            style={{
+              maxHeight: 'calc(100vh - 310px)',
+              minHeight: '50vh', // Ensures a minimum height for usability
+            }}
+          >
             <Table>
               <TableHeader className="bg-gray-100">
                 {table.getHeaderGroups().map((headerGroup) => (
