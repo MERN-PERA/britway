@@ -1,6 +1,5 @@
 import { Driver } from "@/app/components/driver-table";
 
-
 export type Booking = {
   driver: Driver;
   Email: string;
@@ -49,13 +48,3 @@ export type Booking = {
   Currency: string;
   "Tracking History": string;
 };
-
-
-
-
-
-
-
-
-
-

@@ -9,6 +9,7 @@ import { useExcelData } from "../hooks";
 import { BookingTable } from "../components/booking-table";
 import { type Booking } from "../typings";
 
+
 export default function Booking() {
   const fileInput = useRef<HTMLInputElement>(null);
   const { data, excelToData } = useExcelData();
@@ -155,30 +156,23 @@ export default function Booking() {
   return (
     <div className="flex flex-1 flex-col gap-6 w-screen lg:w-80 bg-gray-50">
       <div className="flex items-center justify-between p-4 bg-white shadow-md rounded-lg">
-        <h1 className="text-xl font-semibold text-gray-900">Booking</h1>
+        <h1 className="text-lg font-semibold md:text-2xl text-gray-900">Booking</h1>
 
         <div className="flex gap-5">
-          <Button
-            disabled={isSaveDisabled || data?.length === 0}
-            onClick={createBookings}
-            className="bg-blue-600 text-white hover:bg-blue-700"
-          >
-            Save
-          </Button>
+        <Button
+          onClick={() => fileInput.current?.click()}
+          className="bg-green-600 bg-opacity-40 text-green-600 font-bold hover:bg-green-700 hover:bg-opacity-50 flex items-center gap-2"
+        >
+          <img
+            src="https://iconsax.io/icons/a/19.svg"
+            alt="Import Icon"
+            className="w-5 h-5"
+          />
+          Import
+        </Button>
 
-          <Button
-            onClick={deleteAllBookings}
-            className="bg-red-600 text-white hover:bg-red-700"
-          >
-            Delete All
-          </Button>
 
-          <Button
-            onClick={() => fileInput.current?.click()}
-            className="bg-green-600 text-white hover:bg-green-700"
-          >
-            Import
-          </Button>
+
           <input
             ref={fileInput}
             type="file"
@@ -186,6 +180,34 @@ export default function Booking() {
             className="hidden"
             onChange={(e) => handleFileChange(e.target.files?.[0])}
           />
+          <Button
+            disabled={isSaveDisabled || data?.length === 0}
+            onClick={createBookings}
+            className="bg-blue-600 bg-opacity-40 text-blue-600 font-bold hover:bg-blue-700 hover:bg-opacity-50 flex items-center gap-2 disabled:bg-gray-400 disabled:text-gray-500"
+          >
+            <img
+              src="https://iconsax.io/icons/a/6.svg"
+              alt="Save Icon"
+              className="w-5 h-5"
+            />
+            Save
+          </Button>
+
+
+          <Button
+            onClick={deleteAllBookings}
+            className="bg-red-600 bg-opacity-40 text-red-600 font-bold hover:bg-red-700 hover:bg-opacity-50 flex items-center gap-2"
+          >
+            <img
+              src="https://iconsax.io/icons/a/64.svg"
+              alt="Delete Icon"
+              className="w-5 h-5"
+            />
+            Delete All
+          </Button>
+
+
+
         </div>
       </div>
       <div className="flex flex-1 p-4 rounded-lg bg-white shadow-sm">
